@@ -33,18 +33,15 @@ It includes a simple **Node.js/Express backend** that serves the CSV as JSON, an
 1. **Unzip** the project.
 2. Open a terminal in the project root.
 3. Install backend dependencies:
-
-   ---bash--
+   ```bash
    cd backend
    npm install
-
-   ***
-
+   ```
 4. Install frontend dependencies:
-   ---bash--
+   ```bash
    cd ../frontend
    npm install
-   ***
+   ```
 
 ---
 
@@ -54,27 +51,26 @@ It includes a simple **Node.js/Express backend** that serves the CSV as JSON, an
 
    ---bash--
    cd backend
-   npm start
+   npm run dev
 
    ***
 
-   The API will run at `http://localhost:5000`.
+   The API will run at `http://localhost:4000`.
 
 2. Start the frontend React app:
 
-   ---bash--
-   cd ../frontend
-   npm start
+   ```bash
+   cd frontend
+   npm run dev
+   ```
 
-   ***
-
-   The app will run at `http://localhost:3000`.
+   The app will run at `http://localhost:5173`.
 
 ---
 
 ## Usage
 
-- Visit `http://localhost:3000`.
+- Visit `http://localhost:5173`.
 - Go to `/login` to create or log in with a username.
 - Explore `/dashboard` to filter, search, and view data.
 - Click on a car for details at `/cars/:id`.
@@ -84,6 +80,8 @@ It includes a simple **Node.js/Express backend** that serves the CSV as JSON, an
 ---
 
 ## Deployment
+
+## TODO (Not implemented yet)
 
 - Frontend: Can be deployed to Vercel, Netlify, etc.
 - Backend: Can be deployed to Render, Fly.io, etc.
