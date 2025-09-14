@@ -22,7 +22,14 @@ export default function Dashboard(){
   const favorites = useFavorites(s=>s.favorites)
 
   useEffect(()=>{
-    fetch('/api/cars?per=2000').then(r=>r.json()).then(j=>setCars(j.data || []))
+    fetch('/api/cars')
+    .then(r =>
+        r.json())
+    .then(j => {
+      console.log(j.data);
+      setCars(j.data || []);
+     } 
+    )
   },[])
 
   const filtered = useMemo(()=>{
@@ -72,7 +79,7 @@ export default function Dashboard(){
           {filtered.map(c=> (
             <tr key={c.id}>
               <td>{c.id}</td>
-              <td><Link to={'/cars/'+c.id}>{c.name || c.model || 'Car '+c.id}</Link></td>
+              <td><Link to={'/cars/'+c.id}>{c.car_name || c.model_year || 'Car '+c.id}</Link></td>
               <td>{c.mpg}</td>
               <td>{c.cylinders}</td>
               <td>{c.model_year}</td>
