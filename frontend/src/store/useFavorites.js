@@ -1,15 +1,27 @@
-import create from 'zustand'
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
-const useFavorites = create((set) => ({
-  favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
-  toggle: (item) => set(state => {
-    const exists = state.favorites.find(f => f.id === item.id)
-    let next = []
-    if (exists) next = state.favorites.filter(f => f.id !== item.id)
-    else next = [...state.favorites, item]
-    localStorage.setItem('favorites', JSON.stringify(next))
-    return { favorites: next }
-  })
-}))
+const useFavorites = create(
+  persist(
+    (set, get) => ({
+      favorites: [],
+      toggle: (item) => {
+        const exists = get().favorites.find(f => f.id === item.id)
+        const next = exists
+          ? get().favorites.filter(f => f.id !== item.id)
+          : [...get().favorites, item]
+        
+        // next.favorite = (next.favorite && next.favorite === true) ? false : true;
+        console.log(next);
+        set({ favorites: next })
+      },
+      clearAll: () => set({ favorites: [] }), // ✅ Clear all favorites
+      isFavorite: (id) => get().favorites.some(f => f.id === id), // ✅ Selector
+    }),
+    {
+      name: 'favorites', // localStorage key
+    }
+  )
+)
 
 export default useFavorites

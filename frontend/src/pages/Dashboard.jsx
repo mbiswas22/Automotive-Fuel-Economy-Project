@@ -2,6 +2,8 @@ import React, {useEffect, useState, useMemo} from 'react'
 import { Link } from 'react-router-dom'
 import { Bar } from 'react-chartjs-2'
 import useFavorites from '../store/useFavorites'
+import FavoriteButton from '../store/favoriteButton'
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,13 +22,16 @@ export default function Dashboard(){
   const [minMpg, setMinMpg] = useState('')
   const favToggle = useFavorites(s=>s.toggle)
   const favorites = useFavorites(s=>s.favorites)
+  const clearAll = useFavorites()
+  const isFavorite = useFavorites((s) => s.isFavorite(s=>s.toggle))
+  
 
   useEffect(()=>{
     fetch('/api/cars')
     .then(r =>
         r.json())
     .then(j => {
-      console.log(j.data);
+      // console.log(j.data);
       setCars(j.data || []);
      } 
     )
@@ -49,7 +54,15 @@ export default function Dashboard(){
     })
     const labels = Object.keys(byYear).sort()
     const data = labels.map(l=>byYear[l])
-    return { labels, datasets: [{ label: 'Count by Model Year', data }] }
+    return { 
+      labels, 
+      datasets: [
+        { label: 'Count by Model Year', 
+          data,
+          backgroundColor: 'rgba(24, 91, 162, 0.6)', // Single color for all bars
+          borderColor: 'rgba(24, 91, 162, 0.6)',
+          borderWidth: 1 }
+      ] }
   },[filtered])
 
   return (
@@ -74,7 +87,8 @@ export default function Dashboard(){
       </div>
 
       <table className="car-table">
-        <thead><tr><th>ID</th><th>Name</th><th>MPG</th><th>Cyl</th><th>Year</th><th></th></tr></thead>
+        <thead><tr><th>ID</th><th>Name</th><th>MPG</th><th>Cyl</th><th>Year</th>
+        <th></th></tr></thead>
         <tbody>
           {filtered.map(c=> (
             <tr key={c.id}>
@@ -83,7 +97,13 @@ export default function Dashboard(){
               <td>{c.mpg}</td>
               <td>{c.cylinders}</td>
               <td>{c.model_year}</td>
-              <td><button onClick={()=>favToggle(c)}>❤</button></td>
+              <td>
+              <FavoriteButton item={c} />
+                {/* <button onClick={()=>favToggle(c)} className={`px-3 py-1 rounded-md font-medium transition-colors ${
+        isFavorite ? 'bg-red-500 text-white' : 'bg-gray-300 text-black'
+      }`}>
+               {isFavorite ? '❤️' : '🤍'}</button> */}
+               </td>
             </tr>
           ))}
         </tbody>
