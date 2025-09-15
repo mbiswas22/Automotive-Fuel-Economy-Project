@@ -99,10 +99,6 @@ export default function Dashboard(){
               <td>{c.model_year}</td>
               <td>
               <FavoriteButton item={c} />
-                {/* <button onClick={()=>favToggle(c)} className={`px-3 py-1 rounded-md font-medium transition-colors ${
-        isFavorite ? 'bg-red-500 text-white' : 'bg-gray-300 text-black'
-      }`}>
-               {isFavorite ? '❤️' : '🤍'}</button> */}
                </td>
             </tr>
           ))}

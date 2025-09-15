@@ -5,13 +5,9 @@ export default function FavoriteButton({ item }) {
   const isFavorite = useFavorites((state) => state.isFavorite(item.id))
 
   return (
-    <button
-      onClick={() => toggle(item)}
-      className={`px-3 py-1 rounded-md font-medium transition-colors ${
-        isFavorite ? 'bg-red-500 text-white' : 'bg-gray-300 text-black'
-      }`}
-    >
-      {isFavorite ? 'Unfavorite ❤️' : 'Favorite 🤍'}
-    </button>
+    <div
+      onClick={() => toggle(item)}>
+      {isFavorite ? '❤️' : '🤍'}
+    </div>
   )
 }
