@@ -5,6 +5,7 @@ import { FiTrash2 } from "react-icons/fi"
 import useFavorites from '../store/useFavorites'
 import FavoriteButton from '../store/favoriteButton'
 import { useAuth } from '../pages/AuthContext'
+import { API_BASE } from '../config'
 
 import {
   Chart as ChartJS,
@@ -30,7 +31,7 @@ export default function Dashboard(){
   const { user } = useAuth();
   
   useEffect(()=>{
-    fetch('/api/cars')
+    fetch(`${API_BASE}/cars`)
       .then(r => r.json())
       .then(j => setCars(j.data || []))
   },[])

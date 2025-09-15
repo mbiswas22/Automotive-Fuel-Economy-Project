@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect, useRef } from "react"
 import useFavorites from "../store/useFavorites"
 import FavoriteButton from "../store/favoriteButton"
+import { API_BASE } from '../config'
 
 export default function Detail() {
   const { id } = useParams()
@@ -11,7 +12,7 @@ export default function Detail() {
 
   // Fetch car data
   useEffect(() => {
-    fetch("/api/cars/" + id)
+    fetch(`${API_BASE}/cars/${id}`)
       .then((r) => r.json())
       .then(setCar)
   }, [id])
