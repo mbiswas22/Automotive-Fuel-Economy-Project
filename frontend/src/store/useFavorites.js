@@ -10,16 +10,13 @@ const useFavorites = create(
         const next = exists
           ? get().favorites.filter(f => f.id !== item.id)
           : [...get().favorites, item]
-        
-        // next.favorite = (next.favorite && next.favorite === true) ? false : true;
-        console.log(next);
         set({ favorites: next })
       },
-      clearAll: () => set({ favorites: [] }), // ✅ Clear all favorites
-      isFavorite: (id) => get().favorites.some(f => f.id === id), // ✅ Selector
+      clearAll: () => set({ favorites: [] }), //Clear all favorites
+      isFavorite: (id) => get().favorites.some(f => f.id === id), //Selector
     }),
     {
-      name: 'favorites', // localStorage key
+      name: 'favorites', //localStorage key
     }
   )
 )
