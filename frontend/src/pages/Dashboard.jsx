@@ -136,7 +136,7 @@ export default function Dashboard(){
             <th onClick={() => handleSort('mpg')} style={{cursor:'pointer'}}>MPG</th>
             <th onClick={() => handleSort('cylinders')} style={{cursor:'pointer'}}>Cyl</th>
             <th onClick={() => handleSort('model_year')} style={{cursor:'pointer'}}>Year</th>
-            <th>
+            <th style={{textAlign: "center"}}>
               <button
                 onClick={clearAll}
                 title="Clear All Favorites"
