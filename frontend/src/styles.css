@@ -1,6 +1,6 @@
 body { font-family: Inter, Arial, sans-serif; margin:0; padding:0; }
-.topbar{ display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#0b5; color:#012; }
-.topbar nav a{ margin-left:12px; color: #012; text-decoration:none; font-weight:600; }
+.topbar{ display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:rgb(27, 29, 137); color:rgb(246, 247, 248); }
+.topbar nav a{ margin-left:12px; color: rgb(249, 250, 251); text-decoration:none; font-weight:600; }
 .main{ padding:20px; }
 .controls input, .controls select{ margin-right:8px; padding:6px 8px; }
 .car-table{ width:100%; border-collapse:collapse; margin-top:12px; }
@@ -9,3 +9,69 @@ body { font-family: Inter, Arial, sans-serif; margin:0; padding:0; }
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+hr {
+    border: none;
+    height: 1px;
+    background-color: lightgray;
+    margin: 10px 0; /* Add some vertical spacing */
+  }
+
+  .logbutton {
+    background-color: #043faa;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 20px;
+  }
+
+  ol.g {list-style-type: decimal;}
+
+  /* Styling for all text input fields */
+input[type="text"] {
+    /* width: 50%; */
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding and border are included in the total width/height */
+  }
+  
+  /* Styling for text input fields when focused */
+  input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none; /* Removes the default browser outline */
+  }
+
+  input[type=text], select {
+    /* width: 50%; */
+    padding: 12px!important;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=password], select {
+    /* width: 50%; */
+    padding: 12px!important;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 20px;
+  }
+
+  .fullWidthInput{
+    width: 100%;
+  }
+
+  .halfWidthInput{
+    width: 50%;
+  }
