@@ -6,7 +6,8 @@ export default function FavoriteButton({ item }) {
 
   return (
     <div
-      onClick={() => toggle(item)}>
+      onClick={() => toggle(item)}
+      style={{textAlign: 'center', cursor: 'pointer'}}>
       {isFavorite ? '❤️' : '🤍'}
     </div>
   )

@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useMemo} from 'react'
 import { Link } from 'react-router-dom'
 import { Bar } from 'react-chartjs-2'
+import { FiTrash2 } from "react-icons/fi"
 import useFavorites from '../store/useFavorites'
 import FavoriteButton from '../store/favoriteButton'
 
@@ -22,8 +23,7 @@ export default function Dashboard(){
   const [minMpg, setMinMpg] = useState('')
   const favToggle = useFavorites(s=>s.toggle)
   const favorites = useFavorites(s=>s.favorites)
-  const clearAll = useFavorites()
-  const isFavorite = useFavorites((s) => s.isFavorite(s=>s.toggle))
+  const clearAll = useFavorites(s => s.clearAll)
   
 
   useEffect(()=>{
@@ -79,7 +79,7 @@ export default function Dashboard(){
           <option value="8">8</option>
         </select>
         <input placeholder="min mpg" value={minMpg} onChange={e=>setMinMpg(e.target.value)} />
-        <div>Favorites: {favorites.length}</div>
+        <div style={{marginTop: '20px'}}>Favorites: <span style={{backgroundColor: '#3498db', color: '#ffffff', padding: '8px 12px', borderRadius: '5px', display: 'inline-block'}}>{favorites.length}</span></div>
       </div>
 
       <div style={{maxWidth:800}}>
@@ -88,7 +88,17 @@ export default function Dashboard(){
 
       <table className="car-table">
         <thead><tr><th>ID</th><th>Name</th><th>MPG</th><th>Cyl</th><th>Year</th>
-        <th></th></tr></thead>
+        <th>
+            <div>
+              <button
+              onClick={clearAll}
+              title="Clear All Favorites"
+              disabled={favorites.length === 0}
+              style={{textAlign: 'center', cursor: 'pointer'}}>
+                  <FiTrash2 size={18} />
+              </button>
+            </div>
+          </th></tr></thead>
         <tbody>
           {filtered.map(c=> (
             <tr key={c.id}>
