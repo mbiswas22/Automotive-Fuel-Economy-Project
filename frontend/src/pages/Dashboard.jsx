@@ -85,6 +85,14 @@ export default function Dashboard(){
     })
   }
 
+  const cylOptions = useMemo(() => {
+    const set = new Set()
+    cars.forEach(c => {
+      if (c.cylinders) set.add(parseInt(c.cylinders))
+    })
+    return Array.from(set).sort((a, b) => a - b)
+  }, [cars])
+
   return (
     <div>
       <div>
@@ -104,11 +112,9 @@ export default function Dashboard(){
         <input className='fullWidthInput' type="text" placeholder="search..." value={q} onChange={e=>setQ(e.target.value)} />
         <select value={cyl} onChange={e=>setCyl(e.target.value)} className='halfWidthInput'>
           <option value="all">All Cylinders</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="8">8</option>
+          {cylOptions.map(opt => (
+            <option key={opt} value={opt}>{opt}</option>
+          ))}
         </select>
         <input type="text" placeholder="min mpg" value={minMpg} onChange={e=>setMinMpg(e.target.value)} />
         <div style={{marginTop: '20px'}}>Favorites: 
