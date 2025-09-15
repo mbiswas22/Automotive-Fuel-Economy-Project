@@ -25,6 +25,7 @@ fs.createReadStream(csvFilePath)
   .on("data", (row) => {
     const normalizedRow = normalizeKeys(row);
     normalizedRow.id = idCounter++; // add incremental ID
+    normalizedRow.car_name = toCamelCase(normalizedRow.car_name)
     cars.push(normalizedRow);
   })
   .on("end", () => {
@@ -41,6 +42,12 @@ function normalizeKeys(obj) {
     }
   }
   return newObj;
+}
+
+function toCamelCase(str) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+    return word.toUpperCase();
+  });
 }
 
 app.get('/api/health', (req, res) => res.json({ok:true, time: new Date()}));

@@ -7,7 +7,8 @@ export default function FavoriteButton({ item }) {
   return (
     <div
       onClick={() => toggle(item)}
-      style={{textAlign: 'center', cursor: 'pointer'}}>
+      style={{textAlign: 'center', cursor: 'pointer'}}
+      title={isFavorite ? 'Mark as my Unfavorite ' : 'Mark as my favorite'}>
       {isFavorite ? '❤️' : '🤍'}
     </div>
   )

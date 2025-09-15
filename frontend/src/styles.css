@@ -6,3 +6,6 @@ body { font-family: Inter, Arial, sans-serif; margin:0; padding:0; }
 .car-table{ width:100%; border-collapse:collapse; margin-top:12px; }
 .car-table th, .car-table td{ border:1px solid #ddd; padding:6px 8px; text-align:left; }
 .card{ padding:16px; border-radius:8px; background:linear-gradient(180deg,#fff,#f0f0f0); display:inline-block; transition:transform 0.12s ease; box-shadow:0 6px 18px rgba(0,0,0,0.08); }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
