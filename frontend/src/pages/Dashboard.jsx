@@ -110,7 +110,7 @@ export default function Dashboard(){
 
       <h2>Dashboard</h2>
       <div className="controls">
-        <input className='fullWidthInput' type="text" placeholder="search..." value={q} onChange={e=>setQ(e.target.value)} />
+        <input className='halfWidthInput' type="text" placeholder="search..." value={q} onChange={e=>setQ(e.target.value)} />
         <select value={cyl} onChange={e=>setCyl(e.target.value)} className='halfWidthInput'>
           <option value="all">All Cylinders</option>
           {cylOptions.map(opt => (
