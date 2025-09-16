@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const router = require('./routes/cars.js');
 const fs = require('fs');
 const path = require('path');
 const csv = require("csv-parser");
@@ -7,16 +8,12 @@ const csv = require("csv-parser");
 const app = express();
 app.use(cors());
 app.use(express.json());
+//Mount all routes under /api
+app.use("/api", router);
 
 const DATA_PATH = path.join(__dirname, 'data', 'cars.json');
 let cars = [];
 let idCounter = 1;
-// try {
-//   cars = JSON.parse(fs.readFileSync(DATA_PATH));
-//   console.log(`Loaded ${cars.length} records from data file.`);
-// } catch (err) {
-//   console.error('Failed to load data:', err);
-// }
 
 // Load CSV file on startup
 const csvFilePath = path.join(__dirname, 'data', "auto-mpg.csv");
@@ -50,9 +47,9 @@ function toCamelCase(str) {
   });
 }
 
-app.get('/api/health', (req, res) => res.json({ok:true, time: new Date()}));
+app.get('/health', (req, res) => res.json({ok:true, time: new Date()}));
 
-app.get('/api/cars', (req, res) => {
+app.get('/cars', (req, res) => {
   let out = cars.slice();
   const q = (req.query.q || '').toLowerCase();
   if (q) {
@@ -72,7 +69,7 @@ app.get('/api/cars', (req, res) => {
   res.json({meta:{total: out.length, page, per}, data: out.slice(start, start+per)});
 });
 
-app.get('/api/cars/:id', (req, res) => {
+app.get('/cars/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const item = cars.find(c => parseInt(c.id) === id);
   if (!item) return res.status(404).json({error:'not found'});
